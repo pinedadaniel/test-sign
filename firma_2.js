@@ -46,18 +46,18 @@ angular.module('ionicApp', ['ionic'])
   function onCanvasMouseUp(event){
     $ionicSlideBoxDelegate.enableSlide(true);
     $ionicSideMenuDelegate.canDragContent(true);
-    $signature.removeEventListener("touchstart", onCanvasMouseMove, false);
-   $signature.removeEventListener("touchstart", onCanvasMouseMove, false);
+    $signature.removeEventListener("touchmove", onCanvasMouseMove, false);
+    $signature.removeEventListener("touchmove", onCanvasMouseMove, false);
     $signature.removeEventListener("touchend", onCanvasMouseUp, false);
-    $signature.removeEventListener("touchmove", onCanvasMouseUp, false);
+    $signature.removeEventListener("mouseup", onCanvasMouseUp, false);
   }
   function onCanvasMouseDown(event){
     $ionicSlideBoxDelegate.enableSlide(false);
     $ionicSideMenuDelegate.canDragContent(false);
-    $signature.addEventListener("touchstart", onCanvasMouseMove, false);
-   $signature.addEventListener("touchstart", onCanvasMouseMove, false);
+    $signature.addEventListener("touchmove", onCanvasMouseMove, false);
+    $signature.addEventListener("touchmove", onCanvasMouseMove, false);
     $signature.addEventListener("touchend", onCanvasMouseUp, false);
-    $signature.addEventListener("touchstart", onCanvasMouseUp, false);
+    $signature.addEventListener("mouseup", onCanvasMouseUp, false);
     updateTouchPosition(event);
     onCanvasMouseMove(event);
   }
