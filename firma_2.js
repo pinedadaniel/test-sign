@@ -28,7 +28,7 @@ angular.module('ionicApp', ['ionic'])
   $signatureContext.strokeStyle = "#000000";
   $signatureContext.lineWidth = 1;
     
-  function updateMousePosition(event) {
+  function updateTouchPosition(event) {
     var target = (event.originalEvent && event.originalEvent.touches) ? event.originalEvent.touches[0] : event;
     var offset = $signature.getBoundingClientRect();
     var offsetTop = offset.top + (window.pageYOffset || $signature.scrollTop )  - ( $signature.clientTop  || 0 );
@@ -39,7 +39,7 @@ angular.module('ionicApp', ['ionic'])
   function onCanvasMouseMove(event){
     $signatureContext.beginPath();
     $signatureContext.moveTo(lastMousePoint.x, lastMousePoint.y);
-    updateMousePosition(event);
+    updateTouchPosition(event);
     $signatureContext.lineTo(lastMousePoint.x, lastMousePoint.y);
     $signatureContext.stroke();
   }
@@ -47,18 +47,18 @@ angular.module('ionicApp', ['ionic'])
     $ionicSlideBoxDelegate.enableSlide(true);
     $ionicSideMenuDelegate.canDragContent(true);
     $signature.removeEventListener("touchmove", onCanvasMouseMove, false);
-    $signature.removeEventListener("mousemove", onCanvasMouseMove, false);
+   /* $signature.removeEventListener("mousemove", onCanvasMouseMove, false);
     $signature.removeEventListener("touchend", onCanvasMouseUp, false);
-    $signature.removeEventListener("mouseup", onCanvasMouseUp, false);
+    $signature.removeEventListener("mouseup", onCanvasMouseUp, false);*/
   }
   function onCanvasMouseDown(event){
     $ionicSlideBoxDelegate.enableSlide(false);
     $ionicSideMenuDelegate.canDragContent(false);
     $signature.addEventListener("touchmove", onCanvasMouseMove, false);
-    $signature.addEventListener("mousemove", onCanvasMouseMove, false);
+   /* $signature.addEventListener("mousemove", onCanvasMouseMove, false);
     $signature.addEventListener("touchend", onCanvasMouseUp, false);
-    $signature.addEventListener("mouseup", onCanvasMouseUp, false);
-    updateMousePosition(event);
+    $signature.addEventListener("mouseup", onCanvasMouseUp, false);*/
+    updateTouchPosition(event);
     onCanvasMouseMove(event);
   }
   $signature.addEventListener("touchstart", onCanvasMouseDown, false);
